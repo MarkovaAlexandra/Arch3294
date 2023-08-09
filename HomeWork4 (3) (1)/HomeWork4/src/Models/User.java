@@ -6,10 +6,10 @@ import java.util.Objects;
  * Модель пользователя
  */
 public class User {
-    public int id;
-    public String userName;
-    public int hashPassword;
-    public long cardNumber;
+    private int id;
+    private String userName;
+    private int hashPassword;
+    private long cardNumber;
 
     public User(int id, String userName, int hashPassword, long cardNumber) {
         this.id = id;

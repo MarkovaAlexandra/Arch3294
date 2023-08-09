@@ -4,9 +4,9 @@ package Models;
  * Модель банковского аккаунта
  */
 public class BankAccount {
-    public int card;
+    public long card;
     public int balance;
-    public int oldCard;
+    public long oldCard;
 
 
 
@@ -24,7 +24,7 @@ public class BankAccount {
                 " }";
     }
 
-    public int getCard() {
+    public long getCard() {
         return card;
     }
 
@@ -32,7 +32,7 @@ public class BankAccount {
         return balance;
     }
 
-    public int getOldCard() {
+    public long getOldCard() {
         return oldCard;
     }
 
