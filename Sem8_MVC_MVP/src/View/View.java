@@ -1,0 +1,23 @@
+package View;
+
+import java.util.List;
+
+import Controller.Controller;
+import Controller.iGetController;
+import Controller.iGetView;
+import Model.Domen.Student;
+
+public class View implements iGetView{
+
+    iGetController contr;
+
+    public void setController(iGetController contr){
+        this.contr = contr;
+    }
+
+    public void printAllStudents(List<Student> students){
+        for(Student s:students){
+            System.out.println(s);
+        }
+    }
+}
