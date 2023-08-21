@@ -1,0 +1,157 @@
+openapi: 3.0.0
+info:
+  title: Заказ реcурсов в облаке
+  version: 0.0.1
+servers:
+  - url: https://localhost:8080/api/vi
+    description: Dev server
+paths:
+  /clouds:
+    get:
+      summary: Метод получение списка ресурсов на облаке
+      tags:
+        - Clouds
+      operationId: getAllClouds
+      responses:
+        "200":
+          description: успешный ответ со списком ресурсов в облаке
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/Cloud"
+        "default":
+          description: все остальные ответы
+          content:
+            aplication/json:
+              schema:
+                  $ref: "#/components/schemas/Error"
+                  
+    post:
+      summary: Создает заказ в облаке
+      tags:
+        - Clouds
+      operationId: createCloud
+      responses:
+        "200":
+          description: успешный ответ со списком ресурсов в облаке
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/Cloud"
+        "default":
+          description: все остальные ответы
+          content:
+            aplication/json:
+              schema:
+                  $ref: "#/components/schemas/Error"
+                  
+                  
+  /clouds/{cloud_id}:
+    get:
+      summary: создание заказа по id облака
+      tags:
+        - Clouds
+      operationId: createOrderById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: идентификатор облака
+          schema:
+            type: string
+            example: qweqew
+      responses:
+        "200":
+          description: заказ создан
+          content:
+            aplication/json: {}
+        "400":
+          description: облако не найдено
+          content:
+            application/json: {}
+        "default":
+          description: все остальные ответы
+          content:
+            aplication/json:
+              schema:
+                  $ref: "#/components/schemas/Error"  
+    delete:
+      summary: отмена заказа в облаке по id
+      tags: 
+        - Clouds
+      operationId: cancelCloudById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: идентификатор заказа в облаке
+          schema:
+            type: string
+            example: qweqew
+      responses:
+        "200":
+          description: заказ отменен
+          content:
+            aplication/json: {}
+        "400":
+          description: заказ не найден
+          content:
+            aplication/json: 
+              schema:
+                  $ref: "#/components/schemas/Error"
+              
+        "default":
+          description: все остальные ответы
+          content:
+            aplication/json:
+              schema:
+                  $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Cloud:
+      type: object
+      required:
+      - id_client
+      - OS
+      - RAM
+      - CPU
+      - HDD
+      properties:
+        cloud_id:
+          type: string
+          example: ff88hjk
+        id_client:
+          type: string
+          example: ff88hjk
+        OS:
+          type: string
+          enum:
+          - windows
+          - linux
+          description: операционная система сервера
+        RAM:
+          type: string
+          example: 128
+          description: объем оперативной памяти
+        CPU:
+          type: string
+          example: 6
+          description: количество ядер процессора
+    Clouds:
+      type: array
+      items:
+        $ref: "#/components/schemas/Cloud"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        
+  
+
