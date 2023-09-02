@@ -148,8 +148,8 @@ paths:
         - Group
       summary: Добавление группы пользователей
       description: Добавление группы пользователей
-      operationID: addGroup
-      reguestBody:
+      operationId: addGroup
+      requestBody:
         description: Добавление группы пользователей
         content:
           application/json:
@@ -393,7 +393,7 @@ paths:
       summary: Обновление расписания
       description: Обновление расписания уборки
       operationId: updateScheduleById
-      parametres:
+      parameters:
         - name: Id
           in: path
           description: ID Идентификатор расписания
